@@ -5,27 +5,45 @@
       
       <%= form_for(@task) do |f| %>
       
+      <% if @task.errors.any? %>
+
+　　　   <div class="alert-warning">
+    　　　　　 <ul>
+       
+  　　　　　  <div id="error_explanation">
+   　　　　　   <ul>
+　　　　　　<% @task.errors.full_messages.each do |task| %>
+
+        　　　  <li><%= task %></li>
+        
+　　　<% end %>
+
+     　　　　 </ul>
+  　　　　　  </div>
+   　　　　</u　  l>　  </div>
+    
+<% end %>
+      
         <div class="form-group">
-          
-      <%= f.text_area :content, class: "form-control", rows: 5 %>
-       <%= f.text_area :status, class: "form-control", rows: 5 %>
+          <%= f.label :content, 'タスクリスト' %>
+          <%= f.text_area :content, class: "form-control", rows: 5 %>
+      
+          <%= f.label :status, 'ステータス' %>
+          <%= f.text_area :status, class: "form-control", rows: 5 %>
         </div>
     
-    <%= f.submit "Post",class: "btn btn-primary btn-block" %>
+        <%= f.submit "Post",class: "btn btn-primary btn-block" %>
     
     <% end %>
     
     </aside>
     <div class="col-xs-8">
       
-    <%= render 'tasks/tasks', tasks: @tasks %>
+        <%= render 'tasks/tasks', tasks: @tasks %>
 
     </div>
   </div>
-
-  <p>ログイン完了ユーザ: 
-<%= current_user.name %>
-</p>
+  
 <% else %>
 
 <div class="center jumbotron">

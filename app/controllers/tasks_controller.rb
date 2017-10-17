@@ -43,7 +43,7 @@ class TasksController < ApplicationController
     @task.destroy
     
     flash[:success]= "Taskは正常に削除されました"
-    redirect_to tasks_url
+    redirect_to root_url
   end
   
   private
@@ -58,11 +58,10 @@ class TasksController < ApplicationController
   end
     
      def correct_user
-    @micropost = current_user.microposts.find_by(id: params[:id])
-    unless @micropost
+    @task = current_user.tasks.find_by(id: params[:id])
+    unless @task
       redirect_to root_url
     end
-    　end
-  end
+     end
 
 end
